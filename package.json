@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.3",
+    "knex": "^2.4.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.9.0"
+  },
+  "name": "proyectofinalbackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ger1967/ProyectoFinalBackend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ger1967/ProyectoFinalBackend/issues"
+  },
+  "homepage": "https://github.com/Ger1967/ProyectoFinalBackend#readme",
+  "description": ""
+}
