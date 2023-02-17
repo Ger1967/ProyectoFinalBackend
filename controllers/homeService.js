@@ -1,6 +1,5 @@
 const knex = require("../config/knexfile");
 
-
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { TOKEN_SECRET } = require("../validators/jwt");
@@ -17,7 +16,8 @@ exports.register = async (req, res) => {
     })
     .then(() => {
       res.json({ message: "Se ha registrado correctamente" });
-
+    });
+};
 
 // MOSTRAR TODOS LOS INMUEBLES EN HOME
 exports.home = (req, res) => {
@@ -78,13 +78,11 @@ exports.nuevoInmueble = async (req, res) => {
     })
     .then((resultado) => {
       res.json({ messagee: "Se ha registrado el nuevo inmueble exitosamente" });
-
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
     });
 };
-
 
 exports.login = (req, res, next) => {
   const { email, password } = req.body;
@@ -113,6 +111,8 @@ exports.login = (req, res, next) => {
       res
         .status(400)
         .json({ error: "Email o contraseña incorrecto" + err.message });
+    });
+};
 
 // MOSTRAR INMUEBLES FILTRADOS
 exports.filtrarInmuebles = async (req, res) => {
@@ -127,6 +127,5 @@ exports.filtrarInmuebles = async (req, res) => {
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
-
     });
 };
