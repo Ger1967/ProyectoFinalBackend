@@ -69,10 +69,12 @@ exports.nuevoInmueble = async (req, res) => {
 exports.filtrarInmuebles = async (req, res) => {
   const { operacion, inmueble, dormitorios, departamento } = req.body;
   knex("inmuebles")
-    .where("operacion", operacion)
-    .where("inmueble", inmueble)
-    .where("dormitorios", dormitorios)
-    .where("departamento", departamento)
+    .where({
+      operacion: operacion,
+      inmueble: inmueble,
+      dormitorios: dormitorios,
+      departamento: departamento,
+    })
     .then((resultado) => {
       res.json(resultado);
     })
