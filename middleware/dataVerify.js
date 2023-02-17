@@ -1,7 +1,7 @@
 const knex = require("../config/knexfile");
 
 const verifyData = (req, res, next) => {
-  const direccion = req.params.direccion;
+  const direccion = req.body.direccion;
   knex("inmuebles").where("direccion");
   if (direccion == inmuebles[0].direccion) {
     res
