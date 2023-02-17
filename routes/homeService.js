@@ -1,7 +1,15 @@
 const express = require("express");
-const { home } = require("../controllers/homeService");
+const {
+  home,
+  inmuebleById,
+  nuevoInmueble,
+  filtrarInmuebles,
+} = require("../controllers/homeService");
 const router = express.Router();
 
-router.get("/", home);
+router.get("/inmuebles", home);
+router.get("/inmuebles/:id", inmuebleById);
+router.post("/inmuebles/nuevoInmueble", nuevoInmueble);
+router.get("/inmuebles/filtro/inmueblesFiltrados", filtrarInmuebles);
 
 module.exports = router;
