@@ -4,6 +4,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { TOKEN_SECRET } = require("../validators/jwt");
 
+// REGISTRAR NUEVO USUARIO
 exports.register = async (req, res) => {
   const { nombre, email, password } = req.body;
   const salt = await bcryptjs.genSalt(10);
@@ -79,14 +80,15 @@ exports.nuevoInmueble = async (req, res) => {
       foto: foto,
       departamento: departamento,
     })
-    .then((resultado) => {
-      res.json({ messagee: "Se ha registrado el nuevo inmueble exitosamente" });
+    .then(() => {
+      res.json({ message: "Se ha registrado el nuevo inmueble exitosamente" });
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
     });
 };
 
+// LOGIN DE USUARIOS
 exports.login = (req, res, next) => {
   const { email, password } = req.body;
   knex("usuarios")

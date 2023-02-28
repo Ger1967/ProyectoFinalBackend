@@ -12,9 +12,8 @@ const verifyData = (req, res, next) => {
     .then((rows) => {
       console.log(rows);
       if (rows.length > 0) {
-        res
-          .status(400)
-          .json({ error: "Su articulo ya se encuentra en nuestro registro" });
+        res.status(400).json({ error: "La direccion ya existe en el sistema" });
+        // alert("Ya existe la direccion en el sistema");
       } else {
         // articulo registrado
         next();
@@ -24,16 +23,6 @@ const verifyData = (req, res, next) => {
       console.error("error al buscar direccion:", error);
       res.status(500).json({ error: "error al buscar direccion" });
     });
-
-  // const direccion = req.body;
-  // const id = req.params.id;
-  // knex("inmuebles").where("direccion");
-  // if (direccion == id[0].direccion) {
-  //   res
-  //     .status(401)
-  //     .json({ message: "Su articulo ya se encuentra en nuestro registro" });
-  //   return;
-  // }
 };
 
 module.exports = { verifyData };
