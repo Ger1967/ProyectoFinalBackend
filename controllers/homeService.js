@@ -120,13 +120,22 @@ exports.login = (req, res, next) => {
 // MOSTRAR INMUEBLES FILTRADOS
 exports.filtrarInmuebles = async (req, res) => {
   const { operacion, inmueble, dormitorio, departamento } = req.body;
+  let consulta = {};
+  if (operacion !== "Tipo de Operacion") {
+    consulta.operacion = operacion;
+  }
+  if (inmueble !== "Tipo de Propiedad") {
+    consulta.inmueble = inmueble;
+  }
+  if (dormitorio !== "Dormitorios") {
+    consulta.dormitorios = dormitorio;
+  }
+  if (departamento !== "Departamento") {
+    consulta.departamento = departamento;
+  }
+  console.log(consulta);
   knex("inmuebles")
-    .where({
-      operacion: operacion,
-      inmueble: inmueble,
-      dormitorios: dormitorio,
-      departamento: departamento,
-    })
+    .where(consulta)
     .then((resultado) => {
       res.json(resultado);
     })
