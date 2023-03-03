@@ -119,12 +119,12 @@ exports.login = (req, res, next) => {
 
 // MOSTRAR INMUEBLES FILTRADOS
 exports.filtrarInmuebles = async (req, res) => {
-  const { operacion, inmueble, dormitorios, departamento } = req.body;
+  const { operacion, inmueble, dormitorio, departamento } = req.body;
   knex("inmuebles")
     .where({
       operacion: operacion,
       inmueble: inmueble,
-      dormitorios: dormitorios,
+      dormitorios: dormitorio,
       departamento: departamento,
     })
     .then((resultado) => {
