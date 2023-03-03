@@ -1,8 +1,20 @@
 const knex = require("../config/knexfile");
-
+const multer = require("multer");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const path = require("path");
 const { TOKEN_SECRET } = require("../validators/jwt");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 exports.register = async (req, res) => {
   const { nombre, email, password } = req.body;
@@ -132,5 +144,20 @@ exports.filtrarInmuebles = async (req, res) => {
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
+    });
+};
+
+exports.uploadImage = async (req, res) => {
+  const { filename, mimetype, size } = req.file;
+  const { nombre, foto } = req.body;
+  const filePath = path.join("uploads", filename);
+  knex("fotos")
+    .insert({ nombre, foto, file_path: filePath })
+    .then(() => {
+      res.status(200);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500);
     });
 };

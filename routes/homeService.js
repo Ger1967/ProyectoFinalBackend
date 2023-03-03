@@ -4,6 +4,7 @@ const {
   inmuebleById,
   nuevoInmueble,
   filtrarInmuebles,
+  uploadImage,
 } = require("../controllers/homeService");
 const router = express.Router();
 const { register, login } = require("../controllers/homeService");
@@ -17,5 +18,6 @@ router.get("/inmuebles", home);
 router.get("/inmuebles/:id", inmuebleById);
 router.post("/inmuebles/nuevoInmueble", verifyData, nuevoInmueble);
 router.get("/inmuebles/filtro/inmueblesFiltrados", filtrarInmuebles);
+router.post("/inmuebles/foto", uploadImage);
 
 module.exports = router;
