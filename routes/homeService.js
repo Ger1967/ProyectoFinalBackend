@@ -16,6 +16,6 @@ router.post("/formulario", login, verifyToken);
 router.get("/inmuebles", home);
 router.get("/inmuebles/:id", inmuebleById);
 router.post("/inmuebles/nuevoInmueble", verifyData, nuevoInmueble);
-router.get("/inmuebles/filtro/inmueblesFiltrados", filtrarInmuebles);
+router.post("/inmuebles/filtro/inmueblesFiltrados", filtrarInmuebles);
 
 module.exports = router;
