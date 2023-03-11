@@ -1,5 +1,5 @@
 const knex = require("../config/knexfile");
-
+const multer = require("multer");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { TOKEN_SECRET } = require("../validators/jwt");
