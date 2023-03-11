@@ -1,5 +1,6 @@
 const knex = require("../config/knexfile");
 
+// TOKEN
 const verifyData = (req, res, next) => {
   const direccion = req.body.direccion;
   console.log(direccion);

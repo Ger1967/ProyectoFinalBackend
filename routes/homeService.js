@@ -4,6 +4,7 @@ const {
   inmuebleById,
   nuevoInmueble,
   filtrarInmuebles,
+  deleteInmueble,
 } = require("../controllers/homeService");
 const router = express.Router();
 const { register, login } = require("../controllers/homeService");
@@ -12,10 +13,10 @@ const { verifyToken } = require("../validators/jwt");
 
 router.post("/formulario/register", register);
 router.post("/formulario", login, verifyToken);
-
 router.get("/inmuebles", home);
 router.get("/inmuebles/:id", inmuebleById);
 router.post("/inmuebles/nuevoInmueble", verifyData, nuevoInmueble);
 router.post("/inmuebles/filtro/inmueblesFiltrados", filtrarInmuebles);
+router.delete("/inmuebles/delete/:id", deleteInmueble);
 
 module.exports = router;

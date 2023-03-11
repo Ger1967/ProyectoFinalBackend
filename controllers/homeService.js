@@ -145,3 +145,23 @@ exports.filtrarInmuebles = async (req, res) => {
       res.status(400).json({ error: error.message });
     });
 };
+
+// DELETE INMUEBLE
+
+exports.deleteInmueble = (req, res) => {
+  const id = req.params.id;
+  knex("inmuebless")
+    .where("inmuebles.id_inmuebles", id)
+    .del()
+    .then(() => {
+      knex("inmuebles")
+        .where("inmuebles.id_inmuebles", id)
+        .del()
+        .then(() => {
+          res.json({ message: "El registro ha sido eliminado exitosamente" });
+        });
+    })
+    .catch((error) => {
+      res.status(400).json({ error: error.message });
+    });
+};
