@@ -1,5 +1,7 @@
 const knex = require("../config/knexfile");
-
+const multer = require("multer");
+const path = require("path");
+const upload = multer({ dest: "uploads/" });
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { TOKEN_SECRET } = require("../validators/jwt");
@@ -141,5 +143,31 @@ exports.filtrarInmuebles = async (req, res) => {
     })
     .catch((error) => {
       res.status(400).json({ error: error.message });
+    });
+};
+
+// UPLODEAR FOTO
+
+exports.foto = async (req, res) => {
+  const file = req.file;
+
+  if (!file) {
+    return res.status(400).json({
+      error: "Porfavor selecciona una imagen",
+    });
+  }
+
+  knex("foto")
+    .insert({ filename: file.filename })
+    .then(() => {
+      res.json({
+        imageUrl: `http://localhost:3002/uploads/${file.filename}`,
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        error: "Error al ingresar la imagen en la base de datos",
+      });
     });
 };
